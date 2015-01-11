@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 String path = request.getContextPath();
@@ -15,103 +15,142 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	sess.setAttribute("auth.random",random);
 	System.out.println("login flag:" + random);
 %>
-<html>
-	<head>
-    <title>DCMCS | Sign In</title>
-    <meta http-equiv="content-language" content="zh_CN" />
-	<meta http-equiv="cache-control" content="no-cache" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
-	div { 
-		margin: 0; 
-		background: #eee; 
-		height: 100%;
-		padding:0;
-	}
-	input {
-		height:30px;
-		line-height:30px;
-		border:none;
-		vertical-align:center;
-		width:283px;
-	}
-	button {
-		border: none;
-		height: 28px;
-		width: 88px;
-		background-image:url(<%=path %>/images/login_submit.jpg);
-	}
-	</style>
-	<script type="text/javascript" src="<%=path %>/js/jquery-1.7.2.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-		$("body").keypress(function(event){
-			if(13 == event.which)
-			{
-				$("#loginSubmit").click();
-			}
-		});
-		
-		$(window).resize(function(){
-			var contentWidth = document.body.clientWidth;
-			var contentHeight = document.body.clientHeight;
-			var cssattr = '';
-			if(contentWidth> 570)
-			{
-				cssattr = "padding-left:" + (contentWidth-570)/2 + "px;"
-				//$("#content").attr("style", "padding-left:" + (contentWidth-570)/2 + "px;");
-			}
-			if(contentHeight>436)
-			{
-				cssattr += "padding-top:" + (contentHeight-436)/3 + "px;"
-				//$("#content").attr("style", "padding-top:" + (contentHeight-436)/2 + "px;");
-			}
-			if(cssattr != '')
-			{
-				$("#content").attr("style", cssattr);
-			}
-		});
-		$(window).resize();
-		
-		$("button").mouseover(function(){
-		  $("button").css("cursor","pointer");
-		})
-	});
-	</script>
-	</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>UPA | Sign In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="upa, a user privilege authentication admin console.">
+	<meta name="author" content="ilbcj">
+
+    <!-- The styles -->
+<!--     <link id="bs-css" href="<%=path %>/css/bootstrap-cerulean.min.css" rel="stylesheet"> -->
+	<link href="<%=path %>/css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href="<%=path %>/css/charisma-app.css" rel="stylesheet">
+    <link href='<%=path %>/bower_components/fullcalendar/dist/fullcalendar.css' rel='stylesheet'>
+    <link href='<%=path %>/bower_components/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print'>
+    <link href='<%=path %>/bower_components/chosen/chosen.min.css' rel='stylesheet'>
+    <link href='<%=path %>/bower_components/colorbox/example3/colorbox.css' rel='stylesheet'>
+    <link href='<%=path %>/bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
+    <link href='<%=path %>/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css' rel='stylesheet'>
+    <link href='<%=path %>/css/jquery.noty.css' rel='stylesheet'>
+    <link href='<%=path %>/css/noty_theme_default.css' rel='stylesheet'>
+    <link href='<%=path %>/css/elfinder.min.css' rel='stylesheet'>
+    <link href='<%=path %>/css/elfinder.theme.css' rel='stylesheet'>
+    <link href='<%=path %>/css/jquery.iphone.toggle.css' rel='stylesheet'>
+    <link href='<%=path %>/css/uploadify.css' rel='stylesheet'>
+    <link href='<%=path %>/css/animate.min.css' rel='stylesheet'>
+
+    <!-- jQuery -->
+    <script src="<%=path %>/bower_components/jquery/jquery.min.js"></script>
+
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="<%=path %>/bower_components/google/html5.js"></script>
+    <![endif]-->
+
+    <!-- The fav icon -->
+    <link rel="shortcut icon" href="<%=path %>/img/favicon.ico">
+
+</head>
+
 <body>
-<form action="<%=path %>/login/loginpwd.action" method="post">
-	<div id="wrap" style="width:100%;height:100%;">
-		<div id="content">
-        <p style="color:red; font-size:1.2em">
-					<s:property value="message" />
-		</p>
-        <table width="570" height="436" background="<%=path %>/images/login-form.jpg">
-        <tr>
-        	<td height="133"></td><td></td>
-        </tr>
-        <tr >
-        	<td width="136" height="70"></td><td width="422"><input type="text" value="" id="loginid" name="loginid"  /></td>
-        </tr>
-        <tr>
-        	<td height="87"></td><td><input type="password" value="" id="pwd" name="pwd"  /></td>
-            
-        </tr>
-        <tr>
-        	<td height="134"></td><td><table width="312">
-        	  <tr>
-        	    <td width="199" height="39"></td>
-        	    <td width="101"><button id="loginSubmit" onclick="submit();"></button></td>
-      	    </tr>
-        	  <tr>
-        	    <td height="44"></td>
-      	    </tr>
-      	  </table></td>
-        </tr>
-        </table>
-        <input type="hidden" value="<%= random%>" id="random" name="random" />
-    </div>
-    </div>
-</form>
+<div class="ch-container">
+    <div class="row">
+        
+    <div class="row">
+        <div class="col-md-12 center login-header">
+            <h2>欢迎使用用户权限管理系统</h2>
+        </div>
+        <!--/span-->
+    </div><!--/row-->
+
+    <div class="row">
+        <div class="well col-md-5 center login-box">
+            <div class="alert alert-info">
+                请使用用户名和口令登录
+            </div>
+            <form class="form-horizontal" action="<%=path %>/login/loginpwd.action" method="post">
+                <fieldset>
+
+                    <div id="message" class="alert alert-danger"><s:property value="message" /></div>
+
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
+                        <input type="text" autofocus class="form-control" placeholder="用户名" name="loginid" id="loginid" />
+                    </div>
+                    <div class="clearfix"></div><br>
+
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
+                        <input type="password" class="form-control" placeholder="口令" name="pwd" id="pwd" />
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <!--
+                    <div class="input-prepend">
+                        <label class="remember" for="remember"><input type="checkbox" id="remember"> Remember me</label>
+                    </div>
+                    <div class="clearfix"></div>
+                    -->
+                    <input type="hidden" value="<%= random%>" id="random" name="random" />
+
+                    <p class="center col-md-5">
+                        <button type="submit" class="btn btn-primary">登录</button>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+        <!--/span-->
+    </div><!--/row-->
+</div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+
+<!-- external javascript -->
+
+<script src="<%=path %>/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- library for cookie management -->
+<script src="<%=path %>/js/jquery.cookie.js"></script>
+<!-- calender plugin -->
+<script src='<%=path %>/bower_components/moment/min/moment.min.js'></script>
+<script src='<%=path %>/bower_components/fullcalendar/dist/fullcalendar.min.js'></script>
+<!-- data table plugin -->
+<script src='<%=path %>/js/jquery.dataTables.min.js'></script>
+
+<!-- select or dropdown enhancer -->
+<script src="<%=path %>/bower_components/chosen/chosen.jquery.min.js"></script>
+<!-- plugin for gallery image view -->
+<script src="<%=path %>/bower_components/colorbox/jquery.colorbox-min.js"></script>
+<!-- notification plugin -->
+<script src="<%=path %>/js/jquery.noty.js"></script>
+<!-- library for making tables responsive -->
+<script src="<%=path %>/bower_components/responsive-tables/responsive-tables.js"></script>
+<!-- tour plugin -->
+<script src="<%=path %>/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
+<!-- star rating plugin -->
+<script src="<%=path %>/js/jquery.raty.min.js"></script>
+<!-- for iOS style toggle switch -->
+<script src="<%=path %>/js/jquery.iphone.toggle.js"></script>
+<!-- autogrowing textarea plugin -->
+<script src="<%=path %>/js/jquery.autogrow-textarea.js"></script>
+<!-- multiple file upload plugin -->
+<script src="<%=path %>/js/jquery.uploadify-3.1.min.js"></script>
+<!-- history.js for cross-browser state change on ajax -->
+<script src="<%=path %>/js/jquery.history.js"></script>
+<!-- application script for Charisma demo -->
+<script src="<%=path %>/js/charisma.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    if ($("#message").html() == "") {
+        $("#message").css("display", "none");
+    }
+
+});
+</script>
+
 </body>
 </html>

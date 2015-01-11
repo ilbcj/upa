@@ -11,7 +11,7 @@
 		<filter-class>com.upa.filter.AuthFilter</filter-class>
 		<init-param>
 			<param-name>whiteList</param-name>
-			<param-value>/login.jsp;/login_1.jsp;/login_2.jsp;/login_3.jsp;/login/loginpwd.action</param-value>
+			<param-value>/login.jsp;/login_1.jsp;/login_2.jsp;/login_3.jsp;/login.html;/login/loginpwd.action</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
