@@ -375,6 +375,7 @@ ul.ajax-loaders {
 #for-is-ajax {
     padding-left: 12px;
     cursor: pointer;
+    display:none;
 }
 
 #loading {

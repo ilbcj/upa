@@ -15,12 +15,12 @@
 		退出登录			method="logout"
 	 -->
 		<action name="loginpwd" class="com.upa.controller.LoginAction" method="Loginpwd" >
-			<result name="success" type="redirectAction">jump.action</result>
+			<result name="success" type="redirectAction">../jump.action</result>
 <!--			<result name="success">/jsp/operatorquery.html</result>-->
 			<result name="error">/login.jsp</result>
 		</action>
 		<action name="jump" class="com.upa.controller.LoginAction" method="Jump" >
-			<result>/page/mainpage.html</result>
+ 			<result>/page/mainpage.html</result>
 		</action>
 		<action name="queryAdminInfo" class="com.upa.controller.LoginAction" method="QueryAdminInfo" >
 			<result name="success" type="json" />

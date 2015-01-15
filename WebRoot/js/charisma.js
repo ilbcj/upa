@@ -40,12 +40,11 @@ $(document).ready(function () {
         switchTheme(currentTheme);
     });
 
-
     function switchTheme(themeName) {
         if (themeName == 'classic') {
-            $('#bs-css').attr('href', 'bower_components/bootstrap/dist/css/bootstrap.min.css');
+            $('#bs-css').attr('href', appbase + '/bower_components/bootstrap/dist/css/bootstrap.min.css');
         } else {
-            $('#bs-css').attr('href', 'css/bootstrap-' + themeName + '.min.css');
+            $('#bs-css').attr('href', appbase + '/css/bootstrap-' + themeName + '.min.css');
         }
 
         $('#themes i').removeClass('glyphicon glyphicon-ok whitespace').addClass('whitespace');
@@ -79,10 +78,12 @@ $(document).ready(function () {
         History = window.History, // Note: We are using a capital H instead of a lower h
         State = History.getState(),
         $log = $('#log');
-
+    
     //bind to State Change
     History.Adapter.bind(window, 'statechange', function () { // Note: We are using statechange instead of popstate
         var State = History.getState(); // Note: We are using History.getState() instead of event.state
+        
+
         $.ajax({
             url: State.url,
             success: function (msg) {
@@ -99,7 +100,8 @@ $(document).ready(function () {
     //ajaxify menus
     $('a.ajax-link').click(function (e) {
         if (msie) e.which = 1;
-        if (e.which != 1 || !$('#is-ajax').prop('checked') || $(this).parent().hasClass('active')) return;
+        //if (e.which != 1 || !$('#is-ajax').prop('checked') || $(this).parent().hasClass('active')) return;
+        if (e.which != 1 || $(this).parent().hasClass('active') ) return;
         e.preventDefault();
         $('.sidebar-nav').removeClass('active');
         $('.navbar-toggle').removeClass('active');

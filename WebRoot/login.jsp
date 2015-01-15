@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	System.out.println("login flag:" + random);
 %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <title>UPA | Sign In</title>
@@ -25,8 +25,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="author" content="ilbcj">
 
     <!-- The styles -->
-<!--     <link id="bs-css" href="<%=path %>/css/bootstrap-cerulean.min.css" rel="stylesheet"> -->
-	<link href="<%=path %>/css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <script type="text/javascript">
+			var appbase = "<%=path %>";
+	</script>
+    <link id="bs-css" href="<%=path %>/css/bootstrap-cerulean.min.css" rel="stylesheet">
     <link href="<%=path %>/css/charisma-app.css" rel="stylesheet">
     <link href='<%=path %>/bower_components/fullcalendar/dist/fullcalendar.css' rel='stylesheet'>
     <link href='<%=path %>/bower_components/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print'>
