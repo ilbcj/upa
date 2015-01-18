@@ -16,6 +16,10 @@ $(document).ready(function () {
         $(this).toggleClass('active');
     });
 
+    //load menu
+    var menuObj=$.ajax({url: appbase + "/page/menu.html",async:false});
+	$("#mainmenu").html(menuObj.responseText);
+    
     var $sidebarNav = $('.sidebar-nav');
 
     // Hide responsive navbar on clicking outside
@@ -87,12 +91,25 @@ $(document).ready(function () {
         $.ajax({
             url: State.url,
             success: function (msg) {
-                $('#content').html($(msg).find('#content').html());
+            	$('#content').fadeOut("slow",function(){
+                	$('#content').html($(msg).find('#content').html());
+                	docReady();
+                	
+                	if( $("#mainmenu li.active a").attr("init") != undefined ) {
+                		pageLoad($("#mainmenu li.active a").attr("init"));
+                	}
+                	else {
+                		alert("no init");
+                	}
+                });
+            	//$('#content').html($(msg).find('#content').html());
+            	
+            	
                 $('#loading').remove();
-                $('#content').fadeIn();
+                $('#content').fadeIn("slow");
+                
                 var newTitle = $(msg).filter('title').text();
                 $('title').text(newTitle);
-                docReady();
             }
         });
     });
@@ -144,7 +161,7 @@ function docReady() {
     });
 
     //chosen - improves select
-    $('[data-rel="chosen"],[rel="chosen"]').chosen();
+//    $('[data-rel="chosen"],[rel="chosen"]').chosen({no_results_text: "没有匹配的值", width:"145px"});
 
     //tabs
     $('#myTab a:first').tab('show');
@@ -294,9 +311,12 @@ function docReady() {
     });
     $('.btn-setting').click(function (e) {
         e.preventDefault();
-        $('#myModal').modal('show');
+        $('#errMessageModal').modal('show');
     });
-
+    $('#errMessageModal a, #errMessageModal .close').click(function(e){
+    	$('#errMessageModal p').html("");
+    	$('#errMessageModal').modal('hide');
+    });
 
     $('#calendar').fullCalendar({
         header: {

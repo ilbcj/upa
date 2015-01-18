@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="sysmanage" extends="json-default" namespace="/sysmanage">
+	<package name="organization" extends="json-default" namespace="/organization">
 		
 		<global-results>
 			<result name="sqlException">/jsp/exception.jsp</result>
@@ -12,16 +12,15 @@
 		</global-exception-mappings>
 	
 	<!-- 
-		配置管理			method="getLocalServerConfig"、"saveLocalServerConfig"
+		查询结点			method="userAdd"、"queryAllBureauNode"
 		
-		审计				method="systemAuditLogQuery"
+		//配置管理			method="sysConfigQuery"、"sysConfigSave"、"allRegionListQuery"
 		
-		数据同步			method="dataSync"
+		//审计				method="systemAuditLogQuery"
+		
+		//数据同步			method="dataSync"
 	 -->
- 		<action name="getLocalServerConfig" class="com.upa.controller.ServerManageAction" method="GetLocalServerConfig" >
- 			<result name="success" type="json" />
- 		</action>
- 		<action name="saveLocalServerConfig" class="com.upa.controller.ServerManageAction" method="SaveLocalServerConfig" >
+ 		<action name="queryAllBureauNode" class="com.upa.controller.OrganizationAction" method="QueryAllBureauNode" >
  			<result name="success" type="json" />
  		</action>
 <!-- 		<action name="userMod" class="com.tass.dcmcs.controller.SysManageAction" method="UserMod" > -->

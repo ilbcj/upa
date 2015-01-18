@@ -9,7 +9,7 @@
 	<package name="jump" extends="json-default" namespace="/">
 		
 		<action name="jump" class="com.upa.controller.LoginAction" method="Jump" >
- 			<result>/page/index.jsp</result>
+ 			<result type="redirect">/page/index.jsp</result>
 		</action>
 	</package>	
 	
@@ -22,4 +22,5 @@
 	-->
 	<include file="struts-login.xml" />
 	<include file="struts-sysmanage.xml"/>
+	<include file="struts-organization.xml"/>
 </struts>    

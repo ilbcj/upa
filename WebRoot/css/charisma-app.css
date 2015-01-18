@@ -193,6 +193,10 @@ select {
     padding: 10px;
 }
 
+.box-content .input-group {
+	margin-bottom:25px;	
+}
+
 .btn-round {
     border-radius: 40px;
     -webkit-border-radius: 40px;

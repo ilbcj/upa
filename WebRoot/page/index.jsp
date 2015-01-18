@@ -67,9 +67,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">账号管理</a></li>
                     <li class="divider"></li>
-                    <li><a href="login.html">Logout</a></li>
+                    <li><a href="../login.jsp">退出</a></li>
                 </ul>
             </div>
             <!-- user dropdown ends -->
@@ -78,19 +78,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="btn-group pull-right theme-container animated tada">
                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                     <i class="glyphicon glyphicon-tint"></i><span
-                        class="hidden-sm hidden-xs"> Change Theme / Skin</span>
+                        class="hidden-sm hidden-xs"> 更换主题</span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" id="themes">
-                    <li><a data-value="classic" href="#"><i class="whitespace"></i> Classic</a></li>
-                    <li><a data-value="cerulean" href="#"><i class="whitespace"></i> Cerulean</a></li>
-                    <li><a data-value="cyborg" href="#"><i class="whitespace"></i> Cyborg</a></li>
-                    <li><a data-value="simplex" href="#"><i class="whitespace"></i> Simplex</a></li>
-                    <li><a data-value="darkly" href="#"><i class="whitespace"></i> Darkly</a></li>
-                    <li><a data-value="lumen" href="#"><i class="whitespace"></i> Lumen</a></li>
-                    <li><a data-value="slate" href="#"><i class="whitespace"></i> Slate</a></li>
-                    <li><a data-value="spacelab" href="#"><i class="whitespace"></i> Spacelab</a></li>
-                    <li><a data-value="united" href="#"><i class="whitespace"></i> United</a></li>
+                    <li><a data-value="classic" href="#"><i class="whitespace"></i> 经典</a></li>
+                    <li><a data-value="cerulean" href="#"><i class="whitespace"></i> 蔚蓝</a></li>
+                    <li><a data-value="cyborg" href="#"><i class="whitespace"></i> 电子</a></li>
+                    <li><a data-value="simplex" href="#"><i class="whitespace"></i> 简约</a></li>
+                    <li><a data-value="darkly" href="#"><i class="whitespace"></i> 暗黑</a></li>
+                    <li><a data-value="lumen" href="#"><i class="whitespace"></i> 明亮</a></li>
+                    <li><a data-value="slate" href="#"><i class="whitespace"></i> 灰岩</a></li>
+                    <li><a data-value="spacelab" href="#"><i class="whitespace"></i> 空间站</a></li>
+                    <li><a data-value="united" href="#"><i class="whitespace"></i> 联合</a></li>
                 </ul>
             </div>
             <!-- theme selector ends -->
@@ -103,49 +103,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- left menu starts -->
         <div class="col-sm-2 col-lg-2">
             <div class="sidebar-nav">
-                <div class="nav-canvas">
-                    <div class="nav-sm nav nav-stacked">
+                <div id="mainmenu" class="nav-canvas">
 
-                    </div>
-                    <ul class="nav nav-pills nav-stacked main-menu">
-                        <li class="nav-header">系统管理</li>
-                        <li><a class="ajax-link" href="<%=path %>/page/index.jsp"><i class="glyphicon glyphicon-home"></i><span> 系统配置</span></a>
-                        </li>
-                        <li class="nav-header">全国信息管理</li>
-                        <li><a class="ajax-link" href="<%=path %>/page/table.jsp"><i class="glyphicon glyphicon-eye-open"></i><span> 人员公共属性信息</span></a>
-                        </li>
-                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-edit"></i><span> 组织机构信息</span></a>
-                        </li>
-                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-list-alt"></i><span> 公共角色信息</span></a>
-                        </li>
-                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-font"></i><span> 公共资源信息</span></a>
-                        </li>
-                        <li class="nav-header">信息管理</li>
-                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-picture"></i><span> 用户管理</span></a>
-                        </li>
-                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-align-justify"></i><span> 工作组管理</span></a>
-                        </li>
-                        <li class="nav-header hidden-md">系统审计</li>
-                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-calendar"></i><span> 用户信息审计</span></a>
-                        </li>
-                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-th"></i><span> 资源审计</span></a>
-                        </li>
-                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-star"></i><span> 角色审计</span></a>
-                        </li>
-						<li class="accordion">
-                            <a href="#"><i class="glyphicon glyphicon-plus"></i><span> Accordion Menu</span></a>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">Child Menu 1</a></li>
-                                <li><a href="#">Child Menu 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="tour.html"><i class="glyphicon glyphicon-globe"></i><span> Tour</span></a>
-                        </li>
-                        <li><a href="error.html"><i class="glyphicon glyphicon-ban-circle"></i><span> Error Page</span></a>
-                        </li>
-                        <li><a href="login.html"><i class="glyphicon glyphicon-lock"></i><span> Login Page</span></a>
-                        </li>
-                    </ul>
                     <label id="for-is-ajax" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>
                 </div>
             </div>
@@ -167,10 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>
     <ul class="breadcrumb">
         <li>
-            <a href="#">Home</a>
-        </li>
-        <li>
-            <a href="#">Dashboard</a>
+            <a href="#">首页</a>
         </li>
     </ul>
 </div>
@@ -575,21 +531,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <hr>
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
+    <div class="modal fade" id="errMessageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static">
 
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>Settings</h3>
+                    <h3>提示</h3>
                 </div>
                 <div class="modal-body">
-                    <p>Here settings can be configured...</p>
+                    <p></p>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-                    <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+                    <a href="#" class="btn btn-default">关闭</a>
                 </div>
             </div>
         </div>
@@ -637,9 +592,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=path %>/js/jquery.uploadify-3.1.min.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
 <script src="<%=path %>/js/jquery.history.js"></script>
-<!-- application script for Charisma demo -->
+<!-- application framework script for upa -->
 <script src="<%=path %>/js/charisma.js"></script>
-
+<!-- application business script for upa -->
+<script src="<%=path %>/js/business.js"></script>
 
 </body>
 </html>

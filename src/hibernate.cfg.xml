@@ -53,6 +53,7 @@
 	<!-- 	<mapping resource="com/tass/dcmcs/model/RegionAgencyInfo.hbm.xml" /> -->
 	<!-- 	<mapping resource="com/tass/dcmcs/model/CurrentCert.hbm.xml" /> -->
 	<mapping resource="com/upa/model/AdminAccredit.hbm.xml" />
+	<mapping resource="com/upa/model/ServerConfig.hbm.xml" />
 
 </session-factory>
 
