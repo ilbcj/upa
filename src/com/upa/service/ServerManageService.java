@@ -21,36 +21,44 @@ public class ServerManageService {
 	public boolean SaveLocalConfig(LocalConfig lc) throws Exception
 	{
 		ServerManageDAO dao = new ServerManageDAOImpl();
-		
-		ServerConfig local = new ServerConfig();
-		local.setCenter(ServerConfig.NOTCENTER);
-		local.setLocal(ServerConfig.ISLOCAL);
-		local.setPort(lc.getLocalServerPort());
-		local.setServer_ip(lc.getLocalServerIp());
-		local.setServer_name(lc.getLocalServerName());
+		ServerConfig currentLocal = dao.GetLocalServerConfig();
+		if(currentLocal == null) {
+			currentLocal = new ServerConfig();
+		}
+		currentLocal.setCenter(ServerConfig.NOTCENTER);
+		currentLocal.setLocal(ServerConfig.ISLOCAL);
+		currentLocal.setPort(lc.getLocalServerPort());
+		currentLocal.setServer_ip(lc.getLocalServerIp());
+		currentLocal.setServer_name(lc.getLocalServerName());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
 				Locale.SIMPLIFIED_CHINESE);
 		String timenow = sdf.format(new Date());
-		local.setTstamp(timenow);
-		if( lc.getLocalServerIp().equals(lc.getCenterServerIp()) 
-				&& lc.getLocalServerPort() == lc.getCenterServerPort() ) {
-			local.setCenter(ServerConfig.ISCENTER);
-			dao.ServerConfigAdd(local);
-			return true;
-		}
-		else {
-			dao.ServerConfigAdd(local);
-		}
+		currentLocal.setTstamp(timenow);
+		dao.ServerConfigAdd(currentLocal);
 		
-		ServerConfig center = new ServerConfig();
-		center.setCenter(ServerConfig.ISCENTER);
-		center.setLocal(ServerConfig.NOTLOCAL);
-		center.setPort(lc.getCenterServerPort());
-		center.setServer_ip(lc.getCenterServerIp());
-		center.setServer_name(lc.getCenterServerName());
-		center.setTstamp(timenow);
+//		if( lc.getLocalServerIp().equals(lc.getCenterServerIp()) 
+//				&& lc.getLocalServerPort() == lc.getCenterServerPort() ) {
+//			local.setCenter(ServerConfig.ISCENTER);
+//			dao.ServerConfigAdd(local);
+//			return true;
+//		}
+//		else {
+//			dao.ServerConfigAdd(local);
+//		}
 		
-		dao.ServerConfigAdd(center);
+		ServerConfig currentCenter = dao.GetCenterServerConfig();
+		if(currentCenter == null) {
+			currentCenter = new ServerConfig();
+			currentCenter.setServer_name(ServerConfig.CENTERNAME);
+		}
+		currentCenter.setCenter(ServerConfig.ISCENTER);
+		currentCenter.setLocal(ServerConfig.NOTLOCAL);
+		currentCenter.setPort(lc.getCenterServerPort());
+		currentCenter.setServer_ip(lc.getCenterServerIp());
+		currentCenter.setServer_name(lc.getCenterServerName());
+		currentCenter.setTstamp(timenow);
+		
+		dao.ServerConfigAdd(currentCenter);
 		return true;
 	}
 }

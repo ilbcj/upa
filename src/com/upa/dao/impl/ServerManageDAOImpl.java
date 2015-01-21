@@ -9,7 +9,6 @@ import org.hibernate.exception.ConstraintViolationException;
 
 import com.upa.dao.ServerManageDAO;
 import com.upa.dto.LocalConfig;
-import com.upa.model.Admin;
 import com.upa.model.HibernateUtil;
 import com.upa.model.ServerConfig;
 
@@ -23,7 +22,7 @@ public class ServerManageDAOImpl implements ServerManageDAO {
 		Transaction tx = session.beginTransaction();
 		try
 		{
-			session.save(config);
+			session.merge(config);
 			tx.commit();
 		}
 		catch(ConstraintViolationException cne){
@@ -97,6 +96,7 @@ public class ServerManageDAOImpl implements ServerManageDAO {
 		return;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public LocalConfig GetLocalConfig() throws Exception {
 		Session session = HibernateUtil.currentSession();
@@ -138,6 +138,50 @@ public class ServerManageDAOImpl implements ServerManageDAO {
 			}
 		}
 		return lc;
+	}
+
+	@Override
+	public ServerConfig GetLocalServerConfig() throws Exception {
+		Session session = HibernateUtil.currentSession();
+		Transaction tx = session.beginTransaction();
+		ServerConfig rs = null;
+		String sqlString = "select * from server_config where local = :local ";
+		try {
+			Query q = session.createSQLQuery(sqlString).addEntity(ServerConfig.class);
+			q.setInteger("local", ServerConfig.ISLOCAL);
+			rs = (ServerConfig)q.uniqueResult();
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+			System.out.println(e.getMessage());
+			throw e;
+		} finally {
+			HibernateUtil.closeSession();
+		}
+		return rs;
+	}
+
+	@Override
+	public ServerConfig GetCenterServerConfig() throws Exception {
+		Session session = HibernateUtil.currentSession();
+		Transaction tx = session.beginTransaction();
+		ServerConfig rs = null;
+		String sqlString = "select * from server_config where center = :center";
+		try {
+			Query q = session.createSQLQuery(sqlString).addEntity(ServerConfig.class);
+			q.setInteger("center", ServerConfig.ISCENTER);
+			rs = (ServerConfig)q.uniqueResult();
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+			System.out.println(e.getMessage());
+			throw e;
+		} finally {
+			HibernateUtil.closeSession();
+		}
+		return rs;
 	}
 
 }

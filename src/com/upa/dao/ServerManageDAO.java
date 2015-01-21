@@ -8,4 +8,6 @@ public interface ServerManageDAO {
 	public void ServerConfigMod(ServerConfig config) throws Exception;
 	public void ServerConfigDel(ServerConfig config) throws Exception;
 	public LocalConfig GetLocalConfig() throws Exception;
+	public ServerConfig GetLocalServerConfig() throws Exception;
+	public ServerConfig GetCenterServerConfig() throws Exception;
 }

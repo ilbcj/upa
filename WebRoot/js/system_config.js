@@ -79,7 +79,6 @@ function sysPageSaveLocalConfig()
 //private 
 function sysIsConfigChange()
 {
-	errorTip($("#sysSelectOrg option:selected").text());
 	if( localConfig == null || localConfig.localServerName != $("#sysSelectOrg option:selected").text()
 			|| localConfig.localServerIp != $("#sysLocalAddress").val()
 			|| localConfig.localServerPort != $("#sysLocalPort").val()
@@ -108,6 +107,7 @@ function sysRequestSaveLocalConfig()
 			localConfig.localServerPort = $("#sysLocalPort").val();
 			localConfig.centerServerIp = $("#sysCenterAddress").val();
 			localConfig.centerServerPort = $("#sysCenterPort").val();
+			$("#saveServerConfigSuccessTip").click();
 		}
 		else
 		{

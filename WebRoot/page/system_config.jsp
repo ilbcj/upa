@@ -222,6 +222,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
     </div>
+    
+    <button class="btn btn-primary noty hidden" id="saveServerConfigSuccessTip" data-noty-options='{"text":"保存服务器配置成功","layout":"center","type":"success"}'>
+                        <i class="glyphicon glyphicon-bell icon-white"></i> Center
+    </button>
     </div><!-- content ends -->
 </div><!--/fluid-row-->
 

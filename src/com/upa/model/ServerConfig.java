@@ -5,6 +5,7 @@ public class ServerConfig {
 	public static final int NOTLOCAL = 0;
 	public static final int ISCENTER = 1;
 	public static final int NOTCENTER = 0;
+	public static final String CENTERNAME = "数据中心";
 	
 	private int id;
 	private String server_name;

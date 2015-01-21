@@ -79,10 +79,9 @@ public class LoginAction extends ActionSupport {
 		}
 		if( as.LoginPwdService(loginid, pwd) )
 		{
-			
 			ctx.getSession().put("admin", loginid);
 		}
-		else 
+		else
 		{
 			message = "信息不正确，登录失败！";
 			return ERROR;
