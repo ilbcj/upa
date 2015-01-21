@@ -24,6 +24,9 @@
  		<action name="saveLocalServerConfig" class="com.upa.controller.ServerManageAction" method="SaveLocalServerConfig" >
  			<result name="success" type="json" />
  		</action>
+ 		<action name="getAllServerConfig" class="com.upa.controller.ServerManageAction" method="GetAllServerConfig" >
+ 			<result name="success" type="json" />
+ 		</action>
 <!-- 		<action name="userMod" class="com.tass.dcmcs.controller.SysManageAction" method="UserMod" > -->
 <!-- 			<result name="success" type="json" /> -->
 <!-- 		</action> -->

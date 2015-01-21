@@ -146,12 +146,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
              </div>
              <div class="box-content">
-                <ul class="nav nav-tabs" id="myTab">
+                <ul class="nav nav-tabs" id="sysConfigTab">
                     <li class="active"><a href="#local">本服务器配置</a></li>
                     <li><a href="#remote">全局服务器列表</a></li>
                 </ul>
 
-                <div id="myTabContent" class="tab-content">
+                <div id="sysConfigTabContent" class="tab-content">
                     <div class="tab-pane active" id="local">
                     	<div class="box-content">
 	                    	<form role="form">
