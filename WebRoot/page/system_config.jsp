@@ -189,12 +189,59 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				        </div>
                     </div>
                     <div class="tab-pane" id="remote">
-                        <h3>Custom
-                            <small>small text</small>
-                        </h3>
-                        <p>Sample paragraph.</p>
-
-                        <p>Your custom text.</p>
+	                    <div class="box-content">
+	                        <table class="table table-striped" >
+		                        <thead>
+		                        <tr>
+		                            <th>名称</th>
+		                            <th>地址</th>
+		                        </tr>
+		                        </thead>
+		                        <tbody>
+		                        <tr>
+		                            <td>数据中心</td>
+		                            <td class="center">129.168.1.100</td>
+		                        </tr>
+		                        </tbody>
+		                    </table>
+		                    
+		                    <table class="table table-bordered table-striped table-condensed" id="sysServerList">
+		                        <thead>
+		                        <tr>
+		                            <th>名称</th>
+		                            <th>地址</th>
+		                            <th>端口</th>
+		                            <th>位置</th>
+		                        </tr>
+		                        </thead>
+ 		                        <tbody> 
+ 		                        <tr> 
+ 		                            <td>总局</td> 
+ 		                            <td>192.168.1.1</td> 
+ 		                            <td>80</td> 
+ 		                            <td> 
+ 		                                <span class="label-success label label-danger">本地</span> 
+ 		                            </td> 
+ 		                        </tr> 
+ 		                        <tr> 
+ 		                            <td>一局</td> 
+ 		                            <td>192.168.1.2</td> 
+ 		                            <td>80</td> 
+ 		                            <td> 
+ 		                                <span class="label-default label label-default">远端</span> 
+ 		                            </td> 
+ 		                        </tr> 
+ 		                        <tr> 
+ 		                            <td>二局</td> 
+ 		                            <td>192.168.1.3</td> 
+ 		                            <td>80</td> 
+ 		                            <td> 
+ 		                                <span class="label-default label label-default">远端</span> 
+ 		                            </td> 
+ 		                        </tr> 
+ 		                        </tbody> 
+		                    </table>
+						</div>
                     </div>
                 </div>
             </div>

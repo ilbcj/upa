@@ -11,6 +11,15 @@ function sysPageLoad() {
         e.preventDefault();
     });
 	
+    //tabs
+    $('#sysConfigTab a:first').tab('show');
+    $('#sysConfigTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+	
+	$("#sysConfigTab a[href='#remote']").bind("click", sysRefreshServerList);
 	$("#sysSave").bind("click", sysPageSaveLocalConfig);
 	$("#sysConfirmSave").bind("click", sysRequestSaveLocalConfig);
 }
@@ -116,4 +125,56 @@ function sysRequestSaveLocalConfig()
 		}
 	});
 	
+}
+
+//public
+function sysRefreshServerList()
+{
+	$.getJSON(appbase + "/sysmanage/getAllServerConfig.action?rand=" + Math.random(),{}, function(result){
+		
+		if(result.result == true)
+		{
+		//	alert(result.serverConfigs);
+			var t = $("#sysServerList").dataTable();
+			for(var key in result.serverConfigs)
+			{
+//				t.row.add( [
+//result.serverConfigs[key].server_name,
+//result.serverConfigs[key].server_ip,
+//result.serverConfigs[key].port,
+//result.serverConfigs[key].local// == 1 ? '<span class="label-success label label-danger">本地</span>' : '<span class="label-default label label-default">远端</span>',
+//				] ).draw();
+				alert(result.serverConfigs[key].server_name + "\n" + result.serverConfigs[key].server_ip 
+						+ "\n" + result.serverConfigs[key].port + "\n" + result.serverConfigs[key].local );
+			}
+			
+			    
+//			localConfig = result.localConfig;
+//			if( localConfig == null)
+//			{
+//				orgQueryAllBureauNode(sysInitSelectOrg);
+//				localConfig = new Object;
+//			}
+//			else 
+//			{
+//				$("#sysSelectOrg").append("<option>" + localConfig.localServerName + "</option>");
+//				$("#sysSelectOrg").chosen({no_results_text: "没有匹配的值", disable_search:true, width:"100%"});
+//				
+//				$("#sysLocalAddress").val(localConfig.localServerIp);
+//				$("#sysLocalPort").val(localConfig.localServerPort);
+//				$("#sysCenterAddress").val(localConfig.centerServerIp);
+//				$("#sysCenterPort").val(localConfig.centerServerPort);
+//				
+//			}
+		}
+		else
+		{
+			$("#sysSelectOrg").chosen({no_results_text: "没有匹配的值", disable_search:true, width:"100%"});
+			var message = "加载服务器配置数据时出现错误。<br/>" + result.message;
+			errorTip(message);
+		}
+		
+	});
+	
+	return;
 }

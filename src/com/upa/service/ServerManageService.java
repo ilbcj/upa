@@ -2,6 +2,7 @@ package com.upa.service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import com.upa.dao.ServerManageDAO;
@@ -60,5 +61,12 @@ public class ServerManageService {
 		
 		dao.ServerConfigAdd(currentCenter);
 		return true;
+	}
+	
+	public List<ServerConfig> GetAllServerConfig() throws Exception
+	{
+		ServerManageDAO dao = new ServerManageDAOImpl();
+		List<ServerConfig> scs = dao.GetAllServerConfig();
+		return scs;
 	}
 }
