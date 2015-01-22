@@ -1,16 +1,28 @@
 package com.upa.controller;
 
+import java.util.List;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.upa.dto.LocalConfig;
+import com.upa.model.ServerConfig;
 import com.upa.service.ServerManageService;
 
 @SuppressWarnings("serial")
 public class ServerManageAction extends ActionSupport {
 	
 	private LocalConfig localConfig;
+	private List<ServerConfig> serverConfigs;
 	private boolean result;
 	private String message;
 	
+	public List<ServerConfig> getServerConfigs() {
+		return serverConfigs;
+	}
+
+	public void setServerConfigs(List<ServerConfig> serverConfigs) {
+		this.serverConfigs = serverConfigs;
+	}
+
 	public String getMessage() {
 		return message;
 	}
@@ -71,6 +83,21 @@ public class ServerManageAction extends ActionSupport {
 		ServerManageService sms = new ServerManageService();
 		try {
 			sms.SaveLocalConfig(localConfig);
+		}
+		catch(Exception e) {
+			message = e.getMessage();
+			setResult(false);
+			return SUCCESS;
+		}
+		setResult(true);
+		return SUCCESS;
+	}
+	
+	public String GetAllServerConfig()
+	{
+		ServerManageService sms = new ServerManageService();
+		try {
+			serverConfigs = sms.GetAllServerConfig();
 		}
 		catch(Exception e) {
 			message = e.getMessage();

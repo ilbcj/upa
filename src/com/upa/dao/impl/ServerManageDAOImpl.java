@@ -184,4 +184,26 @@ public class ServerManageDAOImpl implements ServerManageDAO {
 		return rs;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ServerConfig> GetAllServerConfig() throws Exception {
+		Session session = HibernateUtil.currentSession();
+		Transaction tx = session.beginTransaction();
+		List<ServerConfig> rs = null;
+		String sqlString = "select * from server_config ";
+		try {
+			Query q = session.createSQLQuery(sqlString).addEntity(ServerConfig.class);
+			rs = q.list();
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+			System.out.println(e.getMessage());
+			throw e;
+		} finally {
+			HibernateUtil.closeSession();
+		}
+		return rs;
+	}
+
 }

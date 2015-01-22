@@ -11,7 +11,15 @@ function sysPageLoad() {
         e.preventDefault();
     });
 	
-	$("#remote").bind("click", sysRefreshServerConfigList);
+    //tabs
+    $('#sysConfigTab a:first').tab('show');
+    $('#sysConfigTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+	
+	$("#sysConfigTab a[href='#remote']").bind("click", sysRefreshServerList);
 	$("#sysSave").bind("click", sysPageSaveLocalConfig);
 	$("#sysConfirmSave").bind("click", sysRequestSaveLocalConfig);
 }
@@ -120,29 +128,44 @@ function sysRequestSaveLocalConfig()
 }
 
 //public
-function sysRefreshServerConfigList()
+function sysRefreshServerList()
 {
 	$.getJSON(appbase + "/sysmanage/getAllServerConfig.action?rand=" + Math.random(),{}, function(result){
 		
 		if(result.result == true)
 		{
-			localConfig = result.localConfig;
-			if( localConfig == null)
+		//	alert(result.serverConfigs);
+			var t = $("#sysServerList").dataTable();
+			for(var key in result.serverConfigs)
 			{
-				orgQueryAllBureauNode(sysInitSelectOrg);
-				localConfig = new Object;
+//				t.row.add( [
+//result.serverConfigs[key].server_name,
+//result.serverConfigs[key].server_ip,
+//result.serverConfigs[key].port,
+//result.serverConfigs[key].local// == 1 ? '<span class="label-success label label-danger">本地</span>' : '<span class="label-default label label-default">远端</span>',
+//				] ).draw();
+				alert(result.serverConfigs[key].server_name + "\n" + result.serverConfigs[key].server_ip 
+						+ "\n" + result.serverConfigs[key].port + "\n" + result.serverConfigs[key].local );
 			}
-			else 
-			{
-				$("#sysSelectOrg").append("<option>" + localConfig.localServerName + "</option>");
-				$("#sysSelectOrg").chosen({no_results_text: "没有匹配的值", disable_search:true, width:"100%"});
-				
-				$("#sysLocalAddress").val(localConfig.localServerIp);
-				$("#sysLocalPort").val(localConfig.localServerPort);
-				$("#sysCenterAddress").val(localConfig.centerServerIp);
-				$("#sysCenterPort").val(localConfig.centerServerPort);
-				
-			}
+			
+			    
+//			localConfig = result.localConfig;
+//			if( localConfig == null)
+//			{
+//				orgQueryAllBureauNode(sysInitSelectOrg);
+//				localConfig = new Object;
+//			}
+//			else 
+//			{
+//				$("#sysSelectOrg").append("<option>" + localConfig.localServerName + "</option>");
+//				$("#sysSelectOrg").chosen({no_results_text: "没有匹配的值", disable_search:true, width:"100%"});
+//				
+//				$("#sysLocalAddress").val(localConfig.localServerIp);
+//				$("#sysLocalPort").val(localConfig.localServerPort);
+//				$("#sysCenterAddress").val(localConfig.centerServerIp);
+//				$("#sysCenterPort").val(localConfig.centerServerPort);
+//				
+//			}
 		}
 		else
 		{
