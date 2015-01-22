@@ -11,6 +11,7 @@ function sysPageLoad() {
         e.preventDefault();
     });
 	
+	$("#remote").bind("click", sysRefreshServerConfigList);
 	$("#sysSave").bind("click", sysPageSaveLocalConfig);
 	$("#sysConfirmSave").bind("click", sysRequestSaveLocalConfig);
 }
@@ -116,4 +117,41 @@ function sysRequestSaveLocalConfig()
 		}
 	});
 	
+}
+
+//public
+function sysRefreshServerConfigList()
+{
+	$.getJSON(appbase + "/sysmanage/getAllServerConfig.action?rand=" + Math.random(),{}, function(result){
+		
+		if(result.result == true)
+		{
+			localConfig = result.localConfig;
+			if( localConfig == null)
+			{
+				orgQueryAllBureauNode(sysInitSelectOrg);
+				localConfig = new Object;
+			}
+			else 
+			{
+				$("#sysSelectOrg").append("<option>" + localConfig.localServerName + "</option>");
+				$("#sysSelectOrg").chosen({no_results_text: "没有匹配的值", disable_search:true, width:"100%"});
+				
+				$("#sysLocalAddress").val(localConfig.localServerIp);
+				$("#sysLocalPort").val(localConfig.localServerPort);
+				$("#sysCenterAddress").val(localConfig.centerServerIp);
+				$("#sysCenterPort").val(localConfig.centerServerPort);
+				
+			}
+		}
+		else
+		{
+			$("#sysSelectOrg").chosen({no_results_text: "没有匹配的值", disable_search:true, width:"100%"});
+			var message = "加载服务器配置数据时出现错误。<br/>" + result.message;
+			errorTip(message);
+		}
+		
+	});
+	
+	return;
 }
