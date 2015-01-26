@@ -24,6 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href='<%=path %>/bower_components/chosen/chosen.min.css' rel='stylesheet'>
     <link href='<%=path %>/bower_components/colorbox/example3/colorbox.css' rel='stylesheet'>
     <link href='<%=path %>/bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
+    <link href='<%=path %>/bower_components/datatables/media/css/jquery.dataTables.css' rel='stylesheet'>
+<!--     <link href='<%=path %>/resources/dataTables/bootstrap/3/dataTables.bootstrap.css' rel='stylesheet'> -->
     <link href='<%=path %>/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css' rel='stylesheet'>
     <link href='<%=path %>/css/jquery.noty.css' rel='stylesheet'>
     <link href='<%=path %>/css/noty_theme_default.css' rel='stylesheet'>
@@ -570,7 +572,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src='<%=path %>/bower_components/moment/min/moment.min.js'></script>
 <script src='<%=path %>/bower_components/fullcalendar/dist/fullcalendar.min.js'></script>
 <!-- data table plugin -->
-<script src='<%=path %>/js/jquery.dataTables.min.js'></script>
+<script src='<%=path %>/bower_components/datatables/media/js/jquery.dataTables.min.js'></script>
+<!-- <script src='<%=path %>/resources/dataTables/bootstrap/3/dataTables.bootstrap.js'></script> --!>
 
 <!-- select or dropdown enhancer -->
 <script src="<%=path %>/bower_components/chosen/chosen.jquery.min.js"></script>
@@ -592,10 +595,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=path %>/js/jquery.uploadify-3.1.min.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
 <script src="<%=path %>/js/jquery.history.js"></script>
-<!-- application framework script for upa -->
-<script src="<%=path %>/js/charisma.js"></script>
+
 <!-- application business script for upa -->
 <script src="<%=path %>/js/business.js"></script>
+<!-- application framework script for upa -->
+<script src="<%=path %>/js/charisma.js"></script>
+
 
 </body>
 </html>

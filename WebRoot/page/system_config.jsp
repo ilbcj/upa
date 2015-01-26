@@ -190,7 +190,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                     <div class="tab-pane" id="remote">
 	                    <div class="box-content">
-	                        <table class="table table-striped" >
+	                        <table class="hover" cellspacing="0" width="100%" id="sysCenterInfo">
 		                        <thead>
 		                        <tr>
 		                            <th>名称</th>
@@ -204,8 +204,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                        </tr>
 		                        </tbody>
 		                    </table>
-		                    
-		                    <table class="table table-bordered table-striped table-condensed" id="sysServerList">
+		                    <hr />
+		                    <table class="display table-bordered" cellspacing="0" width="100%" id="sysServerList">
 		                        <thead>
 		                        <tr>
 		                            <th>名称</th>
@@ -220,7 +220,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  		                            <td>192.168.1.1</td> 
  		                            <td>80</td> 
  		                            <td> 
- 		                                <span class="label-success label label-danger">本地</span> 
+										1
  		                            </td> 
  		                        </tr> 
  		                        <tr> 
@@ -228,7 +228,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  		                            <td>192.168.1.2</td> 
  		                            <td>80</td> 
  		                            <td> 
- 		                                <span class="label-default label label-default">远端</span> 
+										0
  		                            </td> 
  		                        </tr> 
  		                        <tr> 
@@ -236,7 +236,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  		                            <td>192.168.1.3</td> 
  		                            <td>80</td> 
  		                            <td> 
- 		                                <span class="label-default label label-default">远端</span> 
+										0
  		                            </td> 
  		                        </tr> 
  		                        </tbody> 

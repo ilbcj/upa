@@ -22,6 +22,42 @@ function sysPageLoad() {
 	$("#sysConfigTab a[href='#remote']").bind("click", sysRefreshServerList);
 	$("#sysSave").bind("click", sysPageSaveLocalConfig);
 	$("#sysConfirmSave").bind("click", sysRequestSaveLocalConfig);
+	
+	$("#sysCenterInfo").DataTable({
+		"searching": false,
+	    "ordering": false,
+	    "paging": false,
+	    "info": false,
+	    "columnDefs": [ 
+		               { className: "dt-center", "targets": [ 0,1 ] },
+		               ]
+	});
+	
+	$("#sysServerList").DataTable({
+		"language": {
+            "url": appbase + "/resources/dataTables/zh_CN.txt"
+        },
+		"columnDefs": [ 
+		               { className: "dt-center", "targets": [ 0,1,2,3 ] },
+		               {
+		                   "render": function ( data, type, row ) {
+		                	   //alert(type);
+		                	   var location;
+		                	   if(data == 1)
+	                		   {
+		                		   location = '<span class="label-success label label-danger">本地</span>' ;
+	                		   }
+		                	   else if(data == 0)
+	                		   {
+		                		   location = '<span class="label-default label label-default">远端</span> ';
+	                		   }
+		                	   return location;
+		                   },
+		                   "targets": [3]
+		               }
+		           ]
+	});
+	
 }
 
 //private
@@ -131,21 +167,21 @@ function sysRequestSaveLocalConfig()
 function sysRefreshServerList()
 {
 	$.getJSON(appbase + "/sysmanage/getAllServerConfig.action?rand=" + Math.random(),{}, function(result){
-		
 		if(result.result == true)
 		{
 		//	alert(result.serverConfigs);
-			var t = $("#sysServerList").dataTable();
+			var t = $("#sysServerList").DataTable();
 			for(var key in result.serverConfigs)
 			{
-//				t.row.add( [
-//result.serverConfigs[key].server_name,
-//result.serverConfigs[key].server_ip,
-//result.serverConfigs[key].port,
-//result.serverConfigs[key].local// == 1 ? '<span class="label-success label label-danger">本地</span>' : '<span class="label-default label label-default">远端</span>',
-//				] ).draw();
-				alert(result.serverConfigs[key].server_name + "\n" + result.serverConfigs[key].server_ip 
-						+ "\n" + result.serverConfigs[key].port + "\n" + result.serverConfigs[key].local );
+				t.row.add( [
+result.serverConfigs[key].server_name,
+result.serverConfigs[key].server_ip,
+result.serverConfigs[key].port,
+result.serverConfigs[key].local// == 1 ? '<span class="label-success label label-danger">本地</span>' : '<span class="label-default label label-default">远端</span>',
+				] ).draw();
+				
+//				alert(result.serverConfigs[key].server_name + "\n" + result.serverConfigs[key].server_ip 
+//						+ "\n" + result.serverConfigs[key].port + "\n" + result.serverConfigs[key].local );
 			}
 			
 			    
