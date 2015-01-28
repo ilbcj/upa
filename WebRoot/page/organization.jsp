@@ -153,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="tree well">         
                   <ul>
 			        <li>
-			        	<span><i class=""></i> 组织机构</span>  
+			        	<span data-id="1"><i></i> 组织机构</span>  
 			        	<a href="#" class="btn btn-default btn-sm treeNodeAdd"> <i class="glyphicon glyphicon-plus"></i></a>
 			        	<a href="#" class="btn btn-default btn-sm treeNodeMod disabled"> <i class="glyphicon glyphicon-edit"></i></a>
 			        	<a href="#" class="btn btn-default btn-sm treeNodeDel disabled"> <i class="glyphicon glyphicon-trash"></i></a>
@@ -177,9 +177,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <h3>机构信息</h3>
             </div>
             <div class="modal-body">
-                 <p>本地服务器的配置会对同步功能产生影响，请确认是否保存当前的配置</p>
+	            <div class="box-content">
+	                <form role="form">
+	                    <div class="form-group">
+	                        <label class="control-label" for="orgOrgName">机构名称</label>
+	                   		<input type="text" class="form-control" id="orgOrgName" />
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="control-label" for="orgOrgUID">机构编号</label>
+	                    	<input type="text" class="form-control" id="orgOrgUID" />
+	                    </div>
+	                    <input type="hidden" value="" id="orgEditNodePid" />
+	                    <input type="hidden" value="" id="orgEditNodeId" />
+	                </form>
+	            </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer clear">
               <a href="#" class="btn btn-default" data-dismiss="modal" id="orgModalNoSave">不保存</a>
               <a href="#" class="btn btn-primary" id="orgConfirmSave">保存</a>
             </div>
@@ -206,6 +219,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </div>
         </div>
       </div>
+      
+      <button class="btn btn-primary noty hidden" id="saveOrgNodeSuccessTip" data-noty-options='{"text":"保存机构信息成功","layout":"center","type":"success"}'>
+                        <i class="glyphicon glyphicon-bell icon-white"></i> Center
+      </button>
     <!-- content ends -->
     </div><!--/#content.col-md-0-->
 </div><!--/fluid-row-->

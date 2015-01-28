@@ -25,7 +25,34 @@ function orgManagePageLoad() {
 function orgRequestSaveNode()
 {
 	$('#orgNodeEditModal').modal('hide');
-	alert("save node");
+		
+	var postdata = { 'orgNode.name' : $("#orgOrgName").val(),
+			'orgNode.uid' : $("#orgOrgUID").val(),
+			'orgNode.pid' : parseInt($("#orgEditNodePid").val()),
+			'orgNode.id' : parseInt($("#orgEditNodeId").val())};
+	$.post(appbase + '/organization/saveOrgNode.action', postdata, function(data){
+		if( data.result == true ) 
+		{
+			$("#orgOrgName").val("");
+			$("#orgOrgUID").val("");
+			$("#orgEditNodePid").val(0);
+			$("#orgEditNodeId").val(0);
+			
+			//alert(data.orgNode.id);
+			addChild(data.orgNode);
+			
+			//
+			$("#saveOrgNodeSuccessTip").click();
+		}
+		else
+		{
+			var message = "保存机构数据时出现错误。<br/>" + data.message;
+			errorTip(message);
+		}
+	});
+	
+	
+	
 }
 
 //public 
@@ -56,6 +83,9 @@ function orgQueryAllBureauNode(nodeOperator) {
 //private
 function orgPageAddNode()
 {
+	var pid = $(this).prev("span").attr("data-id");
+	$("#orgEditNodePid").val( pid );
+	$("#orgEditNodeId").val( 0 );
 	$('#orgNodeEditModal').modal('show');
 }
 
@@ -74,5 +104,8 @@ function orgPageDelNode()
 //private 
 function orgModalNoSave()
 {
-	
+	$("#orgOrgName").val("");
+	$("#orgOrgUID").val("");
+	$("#orgEditNodePid").val(0);
+	$("#orgEditNodeId").val(0);
 }
