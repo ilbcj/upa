@@ -116,10 +116,11 @@ $(document).ready(function () {
 
     //ajaxify menus
     $('a.ajax-link').click(function (e) {
-        if (msie) e.which = 1;
+    	e.preventDefault();
+    	if (msie) e.which = 1;
         //if (e.which != 1 || !$('#is-ajax').prop('checked') || $(this).parent().hasClass('active')) return;
         if (e.which != 1 || $(this).parent().hasClass('active') ) return;
-        e.preventDefault();
+        //e.preventDefault();
         $('.sidebar-nav').removeClass('active');
         $('.navbar-toggle').removeClass('active');
         $('#loading').remove();
