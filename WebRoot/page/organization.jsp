@@ -34,7 +34,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href='<%=path %>/css/jquery.iphone.toggle.css' rel='stylesheet'>
     <link href='<%=path %>/css/uploadify.css' rel='stylesheet'>
     <link href='<%=path %>/css/animate.min.css' rel='stylesheet'>
-
+    <link href='<%=path %>/bower_components/tree/tree.css' rel='stylesheet'>
+    
     <!-- jQuery -->
     <script src="<%=path %>/bower_components/jquery/jquery.min.js"></script>
 
@@ -155,8 +156,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        <li>
 			        	<span data-id="1"><i></i> 组织机构</span>  
 			        	<a href="#" class="btn btn-default btn-sm treeNodeAdd"> <i class="glyphicon glyphicon-plus"></i></a>
-			        	<a href="#" class="btn btn-default btn-sm treeNodeMod disabled"> <i class="glyphicon glyphicon-edit"></i></a>
-			        	<a href="#" class="btn btn-default btn-sm treeNodeDel disabled"> <i class="glyphicon glyphicon-trash"></i></a>
+<!-- 			        	<a href="#" class="btn btn-default btn-sm treeNodeMod disabled"> <i class="glyphicon glyphicon-edit"></i></a> -->
+<!-- 			        	<a href="#" class="btn btn-default btn-sm treeNodeDel disabled"> <i class="glyphicon glyphicon-trash"></i></a> -->
 			        </li>
 			      </ul>
                  </div>
@@ -211,6 +212,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div class="modal-body">
                  <p>是否删除当前机构及其子机构</p>
+                 <input type="hidden" value="" id="orgDeleteNodeId" />
+                 <input type="hidden" value="" id="orgDeleteNodeName" />
             </div>
             <div class="modal-footer">
               <a href="#" class="btn btn-default" data-dismiss="modal">不删除</a>
@@ -281,6 +284,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=path %>/bower_components/responsive-tables/responsive-tables.js"></script>
 <!-- tour plugin -->
 <script src="<%=path %>/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
+<!-- tree plugin -->
+<script src="<%=path %>/bower_components/tree/tree.js"></script>
 <!-- star rating plugin -->
 <script src="<%=path %>/js/jquery.raty.min.js"></script>
 <!-- for iOS style toggle switch -->

@@ -1,13 +1,27 @@
 package com.upa.model;
 
 public class Organization {
+	public final static int ROOTNODEID = 1;
+	
 	private int id;
 	private String name;
 	private int parent_id;
-	private int org_node_type;
 	private String description;
+	private String uid;
+	private String tstamp;
 	
-
+	public String getTstamp() {
+		return tstamp;
+	}
+	public void setTstamp(String tstamp) {
+		this.tstamp = tstamp;
+	}
+	public String getUid() {
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 	public int getId() {
 		return id;
 	}
@@ -32,12 +46,6 @@ public class Organization {
 	}
 	public void setParent_id(int parent_id) {
 		this.parent_id = parent_id;
-	}
-	public int getOrg_node_type() {
-		return org_node_type;
-	}
-	public void setOrg_node_type(int org_node_type) {
-		this.org_node_type = org_node_type;
 	}
 	
 }

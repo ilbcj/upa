@@ -24,6 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href='<%=path %>/bower_components/chosen/chosen.min.css' rel='stylesheet'>
     <link href='<%=path %>/bower_components/colorbox/example3/colorbox.css' rel='stylesheet'>
     <link href='<%=path %>/bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
+    <link href='<%=path %>/bower_components/datatables/media/css/jquery.dataTables.css' rel='stylesheet'>
+<!--     <link href='<%=path %>/resources/dataTables/bootstrap/3/dataTables.bootstrap.css' rel='stylesheet'> -->
     <link href='<%=path %>/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css' rel='stylesheet'>
     <link href='<%=path %>/css/jquery.noty.css' rel='stylesheet'>
     <link href='<%=path %>/css/noty_theme_default.css' rel='stylesheet'>
@@ -32,6 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href='<%=path %>/css/jquery.iphone.toggle.css' rel='stylesheet'>
     <link href='<%=path %>/css/uploadify.css' rel='stylesheet'>
     <link href='<%=path %>/css/animate.min.css' rel='stylesheet'>
+    <link href='<%=path %>/bower_components/tree/tree.css' rel='stylesheet'>
 
     <!-- jQuery -->
     <script src="<%=path %>/bower_components/jquery/jquery.min.js"></script>
@@ -69,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <ul class="dropdown-menu">
                     <li><a href="#">账号管理</a></li>
                     <li class="divider"></li>
-                    <li><a href="login.html">退出</a></li>
+                    <li><a href="../login.jsp">退出</a></li>
                 </ul>
             </div>
             <!-- user dropdown ends -->
@@ -98,28 +101,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <!-- topbar ends -->
 <div class="ch-container">
-<div class="row">
-    
-    <!-- left menu starts -->
-    <div class="col-sm-2 col-lg-2">
-        <div class="sidebar-nav">
-            <div id="mainmenu" class="nav-canvas">
-                <label id="for-is-ajax" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>
+    <div class="row">
+        
+        <!-- left menu starts -->
+        <div class="col-sm-2 col-lg-2">
+            <div class="sidebar-nav">
+                <div id="mainmenu" class="nav-canvas">
+
+                    <label id="for-is-ajax" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>
+                </div>
             </div>
         </div>
-    </div>
-    <!--/span-->
-    <!-- left menu ends -->
+        <!--/span-->
+        <!-- left menu ends -->
 
-    <noscript>
-        <div class="alert alert-block col-md-12">
-            <h4 class="alert-heading">Warning!</h4>
+        <noscript>
+            <div class="alert alert-block col-md-12">
+                <h4 class="alert-heading">Warning!</h4>
 
-            <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
-                enabled to use this site.</p>
-        </div>
-    </noscript>
-
+                <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
+                    enabled to use this site.</p>
+            </div>
+        </noscript>
+<!-- ----------------begin----------- -->
     <div id="content" class="col-lg-10 col-sm-10">
       <!-- content starts -->
       <div>
@@ -132,27 +136,98 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </li>
       </ul>
 	  </div>
-<!-- ???????????????? -->
-    </div><!-- content ends -->
+
+	  <div class="row">
+	    <div class="box col-md-12">
+	      <div class="box-inner">
+	        <div class="box-header well">
+	          <h2><i class="glyphicon glyphicon-info-sign"></i> 维护用户信息</h2>
+              <div class="box-icon">
+<!--                 <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a> -->
+<!--                 <a href="#" class="btn btn-minimize btn-round btn-default"><i class="glyphicon glyphicon-chevron-up"></i></a> -->
+<!--                 <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a> -->
+              </div>
+            </div>
+	        <div class="box-content row">
+              <div class="col-lg-3 col-md-12">
+                <div class="tree ">         
+                  <ul>
+			        <li>
+			        	<span data-id="1"><i></i> 组织机构</span>  
+			        </li>
+			      </ul>
+                 </div>
+              </div>
+              
+              <div class="col-lg-9 col-md-12">
+                <div class="box-content">
+	                        
+		                    <hr />
+		                    <table class="display table-bordered" cellspacing="0" width="100%" id="sysServerList">
+		                        <thead>
+		                        <tr>
+		                            <th>名称</th>
+		                            <th>地址</th>
+		                            <th>端口</th>
+		                            <th>位置</th>
+		                        </tr>
+		                        </thead>
+ 		                        <tbody> 
+ 		                        <tr> 
+ 		                            <td>总局</td> 
+ 		                            <td>192.168.1.1</td> 
+ 		                            <td>80</td> 
+ 		                            <td> 
+										1
+ 		                            </td> 
+ 		                        </tr> 
+ 		                        <tr> 
+ 		                            <td>一局</td> 
+ 		                            <td>192.168.1.2</td> 
+ 		                            <td>80</td> 
+ 		                            <td> 
+										0
+ 		                            </td> 
+ 		                        </tr> 
+ 		                        <tr> 
+ 		                            <td>二局</td> 
+ 		                            <td>192.168.1.3</td> 
+ 		                            <td>80</td> 
+ 		                            <td> 
+										0
+ 		                            </td> 
+ 		                        </tr> 
+ 		                        </tbody> 
+		                    </table>
+						</div>
+              </div>
+	
+	        </div><!-- box-content row ends -->
+	      </div><!-- "box-inner ends -->
+	    </div><!-- box col-md-12 ends -->
+	  </div><!-- row ends -->
+
+<!-- ----------------end----------- -->	  
+    <!-- content ends -->
+    </div><!--/#content.col-md-0-->
 </div><!--/fluid-row-->
 
     <hr>
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
+    <div class="modal fade" id="errMessageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static">
 
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>Settings</h3>
+                    <h3>提示</h3>
                 </div>
                 <div class="modal-body">
-                    <p>Here settings can be configured...</p>
+                    <p></p>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-                    <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+                    <a href="#" class="btn btn-default">关闭</a>
                 </div>
             </div>
         </div>
@@ -178,7 +253,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src='<%=path %>/bower_components/moment/min/moment.min.js'></script>
 <script src='<%=path %>/bower_components/fullcalendar/dist/fullcalendar.min.js'></script>
 <!-- data table plugin -->
-<script src='<%=path %>/js/jquery.dataTables.min.js'></script>
+<script src='<%=path %>/bower_components/datatables/media/js/jquery.dataTables.min.js'></script>
+<!-- <script src='<%=path %>/resources/dataTables/bootstrap/3/dataTables.bootstrap.js'></script> --!>
 
 <!-- select or dropdown enhancer -->
 <script src="<%=path %>/bower_components/chosen/chosen.jquery.min.js"></script>
@@ -190,6 +266,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=path %>/bower_components/responsive-tables/responsive-tables.js"></script>
 <!-- tour plugin -->
 <script src="<%=path %>/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
+<!-- tree plugin -->
+<script src="<%=path %>/bower_components/tree/tree.js"></script>
 <!-- star rating plugin -->
 <script src="<%=path %>/js/jquery.raty.min.js"></script>
 <!-- for iOS style toggle switch -->
@@ -200,7 +278,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=path %>/js/jquery.uploadify-3.1.min.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
 <script src="<%=path %>/js/jquery.history.js"></script>
-<!-- application script for Charisma demo -->
+
+<!-- application business script for upa -->
+<script src="<%=path %>/js/business.js"></script>
+<!-- application framework script for upa -->
 <script src="<%=path %>/js/charisma.js"></script>
 
 

@@ -3,21 +3,38 @@ package com.upa.controller;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.upa.dto.OrgNode;
 import com.upa.model.Organization;
 import com.upa.service.OrgManageService;
 
 @SuppressWarnings("serial")
 public class OrganizationAction extends ActionSupport {
 	private List<Organization> bureauNodes;
-	private OrgNode orgNode;
+	private List<Organization> childrenNodes;
+	private Organization orgNode;
 	private boolean result;
+	private String message;
 	
-	public OrgNode getOrgNode() {
+	public List<Organization> getChildrenNodes() {
+		return childrenNodes;
+	}
+
+	public void setChildrenNodes(List<Organization> childrenNodes) {
+		this.childrenNodes = childrenNodes;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Organization getOrgNode() {
 		return orgNode;
 	}
 
-	public void setOrgNode(OrgNode orgNode) {
+	public void setOrgNode(Organization orgNode) {
 		this.orgNode = orgNode;
 	}
 
@@ -41,14 +58,55 @@ public class OrganizationAction extends ActionSupport {
 	public String QueryAllBureauNode()
 	{
 		OrgManageService oms = new OrgManageService();
-		bureauNodes = oms.QueryAllBureauNode();
+		try {
+			bureauNodes = oms.QueryAllBureauNode();
+		} catch (Exception e) {
+			message = e.getMessage();
+			setResult(false);
+			return SUCCESS;
+		}
 		setResult(true);
 		return SUCCESS;
 	}
 	
 	public String SaveOrgNode()
 	{
-		orgNode.setId(1001);
+		OrgManageService oms = new OrgManageService();
+		try {
+			orgNode = oms.SaveOrgNode(orgNode);
+		} catch (Exception e) {
+			message = e.getMessage();
+			setResult(false);
+			return SUCCESS;
+		}
+		setResult(true);
+		return SUCCESS;
+	}
+	
+	public String QueryChildrenNodes()
+	{
+		OrgManageService oms = new OrgManageService();
+		try {
+			childrenNodes = oms.QueryChildrenNodes(orgNode.getParent_id());
+		} catch (Exception e) {
+			message = e.getMessage();
+			setResult(false);
+			return SUCCESS;
+		}
+		setResult(true);
+		return SUCCESS;
+	}
+	
+	public String DeleteOrgNode()
+	{
+		OrgManageService oms = new OrgManageService();
+		try {
+			oms.DeleteOrgNode(orgNode);
+		} catch (Exception e) {
+			message = e.getMessage();
+			setResult(false);
+			return SUCCESS;
+		}
 		setResult(true);
 		return SUCCESS;
 	}
