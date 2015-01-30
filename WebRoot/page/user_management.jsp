@@ -146,9 +146,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--                 <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a> -->
 <!--                 <a href="#" class="btn btn-minimize btn-round btn-default"><i class="glyphicon glyphicon-chevron-up"></i></a> -->
 <!--                 <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a> -->
+                <a href="#" class="btn btn-round btn-default" id="userAdd"><i class="glyphicon glyphicon-plus"></i></a>
+                <a href="#" class="btn btn-round btn-default" id="userDel"><i class="glyphicon glyphicon-trash"></i></a>
               </div>
             </div>
 	        <div class="box-content row">
+<!-- 	          <a class="btn btn-default btn-sm" href="#" id="userAdd"><i class="glyphicon glyphicon-plus"></i> 添加</a> -->
+<!-- 		        <a class="btn btn-default btn-sm" href="#" id="userDel"><i class="glyphicon glyphicon-trash"></i> 删除</a> -->
+		                        
+		                    <hr />
+	        	
               <div class="col-lg-3 col-md-12">
                 <div class="tree ">         
                   <ul>
@@ -161,15 +168,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               
               <div class="col-lg-9 col-md-12">
                 <div class="box-content">
-	                        
-		                    <hr />
-		                    <table class="display table-bordered" cellspacing="0" width="100%" id="sysServerList">
+                			
+		                    <table class="display table-bordered" cellspacing="0" width="100%" id="userViewList">
 		                        <thead>
 		                        <tr>
-		                            <th>名称</th>
-		                            <th>地址</th>
-		                            <th>端口</th>
-		                            <th>位置</th>
+		                            <th>姓名</th>
+		                            <th>身份证号</th>
+		                            <th>性别</th>
+		                            <th>组织机构代码</th>
+		                            <th>组织机构名称</th>
+		                            <th>组织机构级别</th>
+		                            <th>警种</th>
+		                            <th>警号</th>
+		                            <th>最高敏感级别</th>
+		                            <th>岗位</th>
+		                            <th>职务/职称</th>
 		                        </tr>
 		                        </thead>
  		                        <tbody> 
@@ -207,6 +220,99 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    </div><!-- box col-md-12 ends -->
 	  </div><!-- row ends -->
 
+	  <div class="modal fade" id="userEditModal" tabindex="-1" role="dialog" aria-labelledby="editUserInfo"
+         aria-hidden="true" data-backdrop="static">
+
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h3>用户信息</h3>
+            </div>
+            <div class="modal-body editUserInfoModalBody">
+	            <div class="box-content ">
+	                <form role="form">
+	                    <div class="form-group col-md-6">
+	                        <label class="control-label" for="orgOrgName">姓名</label>
+	                   		<input type="text" class="form-control" id="userName" />
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label class="control-label" for="orgOrgUID">身份证号</label>
+	                    	<input type="text" class="form-control" id="userID" />
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label class="control-label" for="orgOrgUID">性别</label>
+	                    	<input type="text" class="form-control" id="userSex" />
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label class="control-label" for="orgOrgUID">组织机构代码</label>
+	                    	<input type="text" class="form-control" id="userOrgCode" />
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label class="control-label" for="orgOrgUID">组织机构名称</label>
+	                    	<input type="text" class="form-control" id="userOrgName" />
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label class="control-label" for="orgOrgUID">组织机构级别</label>
+	                    	<input type="text" class="form-control" id="userOrgLevel" />
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label class="control-label" for="orgOrgUID">警种</label>
+	                    	<input type="text" class="form-control" id="userPoliceType" />
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label class="control-label" for="orgOrgUID">警号</label>
+	                    	<input type="text" class="form-control" id="userPoliceCode" />
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label class="control-label" for="orgOrgUID">最高敏感级别</label>
+	                    	<input type="text" class="form-control" id="userMaxSecrityLevel" />
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label class="control-label" for="orgOrgUID">岗位</label>
+	                    	<input type="text" class="form-control" id="userPosition" />
+	                    </div>
+	                    <div class="form-group col-md-6">
+	                        <label class="control-label" for="orgTitle">职务/职称</label>
+	                    	<input type="text" class="form-control" id="userMaxSecrityLevel" />
+	                    </div>
+	                    <input type="hidden" value="" id="userNodeId" />
+	                </form>
+	            </div>
+            </div>
+            <div class="modal-footer clear">
+              <a href="#" class="btn btn-default" data-dismiss="modal" id="userModalNoSave">不保存</a>
+              <a href="#" class="btn btn-primary" id="userConfirmSave">保存</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal fade" id="userDelModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserConfirm"
+         aria-hidden="true" data-backdrop="static">
+
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h3>机构信息</h3>
+            </div>
+            <div class="modal-body">
+                 <p>是否删除选中的用户</p>
+                 <input type="hidden" value="" id="orgDeleteNodeId" />
+                 <input type="hidden" value="" id="orgDeleteNodeName" />
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-default" data-dismiss="modal">不删除</a>
+              <a href="#" class="btn btn-primary" id="orgConfirmDelete">删除</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <button class="btn btn-primary noty hidden" id="saveOrgNodeSuccessTip" data-noty-options='{"text":"保存机构信息成功","layout":"center","type":"success"}'>
+                        <i class="glyphicon glyphicon-bell icon-white"></i> Center
+      </button>
 <!-- ----------------end----------- -->	  
     <!-- content ends -->
     </div><!--/#content.col-md-0-->

@@ -6,6 +6,7 @@ function tree(flag, nodeClickCallback) {
 	nodeClick = nodeClickCallback;
 	//release first start
 	$('.tree li:has(ul)').removeClass('parent_li');
+	$('.tree span').removeClass('treeActivity');
 	$('.tree li.parent_li > span').off('click');
 	$('.tree li:not(.parent_li) > span').off('click');
 	//release first end
@@ -15,6 +16,8 @@ function tree(flag, nodeClickCallback) {
     $('.tree li:has(ul)').addClass('parent_li');//.find(' > span');.attr('title', 'Collapse this branch');
     
     $('.tree li.parent_li > span').on('click', function (e) {
+    	$(this).addClass('treeActivity');
+    	
         var children = $(this).parent('li.parent_li').find(' > ul > li');
         if (children.is(":visible")) {
             children.hide('fast');

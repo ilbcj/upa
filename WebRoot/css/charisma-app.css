@@ -545,6 +545,9 @@ ul.github-buttons li {
     text-align: center;
 }
 
+.right-text {
+	text-align: right;
+}
 /* Mobile */
 @media only screen and (max-width: 767px) {
 
@@ -701,4 +704,9 @@ ul.github-buttons li {
     .ch-container {
         padding: 0 20px;
     }
+}
+
+/* upa */
+.editUserInfoModalBody {
+	height: 510px;
 }

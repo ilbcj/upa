@@ -55,6 +55,7 @@
 	<mapping resource="com/upa/model/AdminAccredit.hbm.xml" />
 	<mapping resource="com/upa/model/ServerConfig.hbm.xml" />
 	<mapping resource="com/upa/model/Organization.hbm.xml" />
+	<mapping resource="com/upa/model/User.hbm.xml" />
 
 </session-factory>
 
