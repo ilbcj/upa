@@ -12,7 +12,7 @@
 		</global-exception-mappings>
 	
 	<!-- 
-		查询结点			method="queryUsersByNode"、//"saveOrgNode"、"queryChildrenNodes"、"deleteOrgNode"
+		查询结点			method="queryUsersByNode"、"saveUser"、//"queryChildrenNodes"、"deleteOrgNode"
 		
 		//配置管理			method="sysConfigQuery"、"sysConfigSave"、"allRegionListQuery"
 		
@@ -21,6 +21,10 @@
 		//数据同步			method="dataSync"
 	 -->
  		<action name="queryUsersByNode" class="com.upa.controller.UserAction" method="QueryUsersByNode" >
+ 			<result name="success" type="json" />
+ 		</action>
+ 		
+ 		<action name="saveUser" class="com.upa.controller.UserAction" method="SaveUser" >
  			<result name="success" type="json" />
  		</action>
  		

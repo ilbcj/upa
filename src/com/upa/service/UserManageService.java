@@ -14,4 +14,10 @@ public class UserManageService {
 		return res;
 	}
 
+	public User SaveUser(User user) throws Exception {
+		UserDAO dao = new UserDAOImpl();
+		user = dao.UserAdd(user);
+		return user;
+	}
+
 }

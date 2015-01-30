@@ -11,10 +11,21 @@ import com.upa.service.UserManageService;
 public class UserAction extends ActionSupport {
 
 	private List<User> users;
+	private User user;
 	private Organization orgNode;
 	private boolean result;
 	private String message;
 	
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 	public List<User> getUsers() {
 		return users;
 	}

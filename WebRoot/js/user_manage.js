@@ -93,19 +93,29 @@ function userRequestSaveUser()
 			'orgNode.uid' : $("#orgOrgUID").val(),
 			'orgNode.parent_id' : parseInt($("#orgEditNodePid").val()),
 			'orgNode.id' : parseInt($("#orgEditNodeId").val())};
-	$.post(appbase + '/organization/saveOrgNode.action', postdata, function(data){
+	$.post(appbase + '/user/saveUser.action', postdata, function(data){
 		if( data.result == true ) 
 		{
 			orgClearModalData();
 			
-			//alert(data.orgNode.id);
-			addChild(data.orgNode);
-			tree(true);
-			$(".treeNodeAdd").bind("click", orgPageAddNode);
-			$(".treeNodeMod").bind("click", orgPageModNode);
-			$(".treeNodeDel").bind("click", orgPageDelNode);
+			var t = $("#userViewList").DataTable();
+			
+				t.row.add( [
+				    data.user.id,
+				    data.user.name,
+				    data.user.id_code,
+				    data.user.sex,
+				    data.user.org_code,
+					data.user.org_name,
+					data.user.org_level,
+					data.user.police_type,
+					data.user.police_code,
+					data.user.max_security_level,
+					data.user.position,
+					data.user.title
+				] ).draw();
 			//
-			$("#saveOrgNodeSuccessTip").click();
+			$("#"saveUserSuccessTip"").click();
 		}
 		else
 		{
