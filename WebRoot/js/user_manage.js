@@ -23,30 +23,43 @@ function userManagePageLoad() {
 	
 	
 	$("#userViewList").DataTable({
-//		"columnDefs": [ 
-//		               { className: "dt-center", "targets": [ 0,1,2,3 ] },
-//		               {
-//		                   "render": function ( data, type, row ) {
-//		                	   //alert(type);
-//		                	   var location;
-//		                	   if(data == 1)
-//	                		   {
-//		                		   location = '<span class="label-success label label-danger">本地</span>' ;
-//	                		   }
-//		                	   else if(data == 0)
-//	                		   {
-//		                		   location = '<span class="label-default label label-default">远端</span> ';
-//	                		   }
-//		                	   return location;
-//		                   },
-//		                   "targets": [3]
-//		               }
-//		           ],
+		"columnDefs": [ 
+		               {
+		                   "targets": [ 0 ],
+		                   "visible": false,
+		                   "searchable": false
+		               }
+		           ],
 		"language": {
             "url": appbase + "/resources/dataTables/zh_CN.txt"
         }
 	});
+
 	
+//	 var table = $('#example').DataTable();
+//	 
+//	    $('#example tbody').on( 'click', 'tr', function () {
+//	        $(this).toggleClass('selected');
+//	    } );
+//	 
+//	    $('#button').click( function () {
+//	        alert( table.rows('.selected').data().length +' row(s) selected' );
+//	    } );
+//	 var table = $('#example').DataTable();
+//	 
+//	    $('#example tbody').on( 'click', 'tr', function () {
+//	        if ( $(this).hasClass('selected') ) {
+//	            $(this).removeClass('selected');
+//	        }
+//	        else {
+//	            table.$('tr.selected').removeClass('selected');
+//	            $(this).addClass('selected');
+//	        }
+//	    } );
+//	 
+//	    $('#button').click( function () {
+//	        table.row('.selected').remove().draw( false );
+//	    } );
 }
 
 //private
@@ -59,19 +72,64 @@ function userChangeNode()
 //private
 function userPageAddUser()
 {
-	
+	if( nodeAttr == undefined )
+	{
+		var message = "没有指定机构信息，请先选择一个机构";
+		errorTip(message);
+		return;
+	}
+	$("#userOrgCode").val(nodeAttr.uid);
+	$("#userOrgName").val(nodeAttr.name);
+	$("#userId").val( 0 );
 	$('#userEditModal').modal('show');
 }
 
 //private
 function userRequestSaveUser()
 {
-	alert("save user");
 	$('#userEditModal').modal('hide');
+	
+	var postdata = { 'orgNode.name' : $("#orgOrgName").val(),
+			'orgNode.uid' : $("#orgOrgUID").val(),
+			'orgNode.parent_id' : parseInt($("#orgEditNodePid").val()),
+			'orgNode.id' : parseInt($("#orgEditNodeId").val())};
+	$.post(appbase + '/organization/saveOrgNode.action', postdata, function(data){
+		if( data.result == true ) 
+		{
+			orgClearModalData();
+			
+			//alert(data.orgNode.id);
+			addChild(data.orgNode);
+			tree(true);
+			$(".treeNodeAdd").bind("click", orgPageAddNode);
+			$(".treeNodeMod").bind("click", orgPageModNode);
+			$(".treeNodeDel").bind("click", orgPageDelNode);
+			//
+			$("#saveOrgNodeSuccessTip").click();
+		}
+		else
+		{
+			var message = "保存用户数据时出现错误。<br/>" + data.message;
+			errorTip(message);
+		}
+	});
 }
 //private
 function userClearModalData()
 {
+	$("#userName").val("");
+	$("#userIDNum").val("");
+	$("#userSex").val( "" );
+	$("#userOrgCode").val("");
+	$("#userOrgName").val("");
+	$("#userOrgLevel").val("");
+	$("#userPoliceType").val("");
+	$("#userPoliceCode").val("");
+	$("#userMaxSecrityLevel").val("");
+	$("#userPosition").val("");
+	$("#userTitle").val("");
+	$("#userId").val( 0 );
+	
 }
 
 //private
@@ -82,23 +140,25 @@ function getUsersByNode(id)
 		if( data.result == true ) 
 		{
 			var t = $("#userViewList").DataTable();
-			for(var key in result.users)
+			t.clear();
+			for(var key in data.users)
 			{
 				t.row.add( [
-				    result.users[key].id,
-					result.users[key].name,
-					result.users[key].id_code,
-					result.users[key].sex,
-					result.users[key].org_code,
-					result.users[key].org_name,
-					result.users[key].org_level,
-					result.users[key].police_type,
-					result.users[key].police_code,
-					result.users[key].max_security_level,
-					result.users[key].position,
-					result.users[key].title
-				] ).draw();
+				    data.users[key].id,
+				    data.users[key].name,
+				    data.users[key].id_code,
+				    data.users[key].sex,
+				    data.users[key].org_code,
+					data.users[key].org_name,
+					data.users[key].org_level,
+					data.users[key].police_type,
+					data.users[key].police_code,
+					data.users[key].max_security_level,
+					data.users[key].position,
+					data.users[key].title
+				] );
 			}
+			t.draw();
 		}
 		else
 		{

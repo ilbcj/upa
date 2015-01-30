@@ -172,6 +172,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                    <table class="display table-bordered" cellspacing="0" width="100%" id="userViewList">
 		                        <thead>
 		                        <tr>
+		                        	<th>id</th>
 		                            <th>姓名</th>
 		                            <th>身份证号</th>
 		                            <th>性别</th>
@@ -186,30 +187,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                        </tr>
 		                        </thead>
  		                        <tbody> 
- 		                        <tr> 
- 		                            <td>总局</td> 
- 		                            <td>192.168.1.1</td> 
- 		                            <td>80</td> 
- 		                            <td> 
-										1
- 		                            </td> 
- 		                        </tr> 
- 		                        <tr> 
- 		                            <td>一局</td> 
- 		                            <td>192.168.1.2</td> 
- 		                            <td>80</td> 
- 		                            <td> 
-										0
- 		                            </td> 
- 		                        </tr> 
- 		                        <tr> 
- 		                            <td>二局</td> 
- 		                            <td>192.168.1.3</td> 
- 		                            <td>80</td> 
- 		                            <td> 
-										0
- 		                            </td> 
- 		                        </tr> 
  		                        </tbody> 
 		                    </table>
 						</div>
@@ -233,50 +210,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <div class="box-content ">
 	                <form role="form">
 	                    <div class="form-group col-md-6">
-	                        <label class="control-label" for="orgOrgName">姓名</label>
+	                        <label class="control-label" for="userName">姓名</label>
 	                   		<input type="text" class="form-control" id="userName" />
 	                    </div>
 	                    <div class="form-group col-md-6">
-	                        <label class="control-label" for="orgOrgUID">身份证号</label>
-	                    	<input type="text" class="form-control" id="userID" />
+	                        <label class="control-label" for="userIDNum">身份证号</label>
+	                    	<input type="text" class="form-control" id="userIDNum" />
 	                    </div>
 	                    <div class="form-group col-md-6">
-	                        <label class="control-label" for="orgOrgUID">性别</label>
+	                        <label class="control-label" for="userSex">性别</label>
 	                    	<input type="text" class="form-control" id="userSex" />
 	                    </div>
 	                    <div class="form-group col-md-6">
-	                        <label class="control-label" for="orgOrgUID">组织机构代码</label>
+	                        <label class="control-label" for="userOrgCode">组织机构代码</label>
 	                    	<input type="text" class="form-control" id="userOrgCode" />
 	                    </div>
 	                    <div class="form-group col-md-6">
-	                        <label class="control-label" for="orgOrgUID">组织机构名称</label>
+	                        <label class="control-label" for="userOrgName">组织机构名称</label>
 	                    	<input type="text" class="form-control" id="userOrgName" />
 	                    </div>
 	                    <div class="form-group col-md-6">
-	                        <label class="control-label" for="orgOrgUID">组织机构级别</label>
+	                        <label class="control-label" for="userOrgLevel">组织机构级别</label>
 	                    	<input type="text" class="form-control" id="userOrgLevel" />
 	                    </div>
 	                    <div class="form-group col-md-6">
-	                        <label class="control-label" for="orgOrgUID">警种</label>
+	                        <label class="control-label" for="userPoliceType">警种</label>
 	                    	<input type="text" class="form-control" id="userPoliceType" />
 	                    </div>
 	                    <div class="form-group col-md-6">
-	                        <label class="control-label" for="orgOrgUID">警号</label>
+	                        <label class="control-label" for="userPoliceCode">警号</label>
 	                    	<input type="text" class="form-control" id="userPoliceCode" />
 	                    </div>
 	                    <div class="form-group col-md-6">
-	                        <label class="control-label" for="orgOrgUID">最高敏感级别</label>
+	                        <label class="control-label" for="userMaxSecrityLevel">最高敏感级别</label>
 	                    	<input type="text" class="form-control" id="userMaxSecrityLevel" />
 	                    </div>
 	                    <div class="form-group col-md-6">
-	                        <label class="control-label" for="orgOrgUID">岗位</label>
+	                        <label class="control-label" for="userPosition">岗位</label>
 	                    	<input type="text" class="form-control" id="userPosition" />
 	                    </div>
 	                    <div class="form-group col-md-6">
-	                        <label class="control-label" for="orgTitle">职务/职称</label>
-	                    	<input type="text" class="form-control" id="userMaxSecrityLevel" />
+	                        <label class="control-label" for="userTitle">职务/职称</label>
+	                    	<input type="text" class="form-control" id="userTitle" />
 	                    </div>
-	                    <input type="hidden" value="" id="userNodeId" />
+	                    <input type="hidden" value="" id="userId" />
 	                </form>
 	            </div>
             </div>
@@ -310,7 +287,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
       </div>
       
-      <button class="btn btn-primary noty hidden" id="saveOrgNodeSuccessTip" data-noty-options='{"text":"保存机构信息成功","layout":"center","type":"success"}'>
+      <button class="btn btn-primary noty hidden" id="saveUserSuccessTip" data-noty-options='{"text":"保存用户信息成功","layout":"center","type":"success"}'>
                         <i class="glyphicon glyphicon-bell icon-white"></i> Center
       </button>
 <!-- ----------------end----------- -->	  

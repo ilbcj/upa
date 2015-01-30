@@ -6,7 +6,6 @@ function tree(flag, nodeClickCallback) {
 	nodeClick = nodeClickCallback;
 	//release first start
 	$('.tree li:has(ul)').removeClass('parent_li');
-	$('.tree span').removeClass('treeActivity');
 	$('.tree li.parent_li > span').off('click');
 	$('.tree li:not(.parent_li) > span').off('click');
 	//release first end
@@ -15,10 +14,16 @@ function tree(flag, nodeClickCallback) {
 	
     $('.tree li:has(ul)').addClass('parent_li');//.find(' > span');.attr('title', 'Collapse this branch');
     
+    $('.tree span').on('click', function (e) {
+    	if( !nodesEditable )
+    	{
+    		$('.tree span').removeClass('treeActivity');
+    		$(this).addClass('treeActivity');
+    	}
+    });
+    
     $('.tree li.parent_li > span').on('click', function (e) {
-    	$(this).addClass('treeActivity');
-    	
-        var children = $(this).parent('li.parent_li').find(' > ul > li');
+    	var children = $(this).parent('li.parent_li').find(' > ul > li');
         if (children.is(":visible")) {
             children.hide('fast');
             $(this).attr('title', 'Expand this branch').find(' > i').addClass('glyphicon glyphicon-plus-sign').removeClass('glyphicon-minus-sign');
@@ -30,7 +35,7 @@ function tree(flag, nodeClickCallback) {
     });
     
     $('.tree li:not(.parent_li) > span').on('click', function (e) {
-        //alert( $(this).html());
+    	//alert( $(this).html());
     	var pid = $(this).attr("data-id");
     	loadChildren(pid, nodesEditable);
         e.stopPropagation();
@@ -90,17 +95,20 @@ function loadChildren(pid, editable)
 	$.post(appbase + '/organization/queryChildrenNodes.action', postdata, function(data){
 		if( data.result == true ) 
 		{
-			for(var key in data.childrenNodes)
+			if( data.childrenNodes.length > 0 )
 			{
-				addChild( data.childrenNodes[key] );
-			}
-			
-			tree( nodesEditable, nodeClick );
-			if( nodesEditable )
-			{
-				$(".treeNodeAdd").bind("click", orgPageAddNode);
-				$(".treeNodeMod").bind("click", orgPageModNode);
-				$(".treeNodeDel").bind("click", orgPageDelNode);
+				for(var key in data.childrenNodes)
+				{
+					addChild( data.childrenNodes[key] );
+				}
+				
+				tree( nodesEditable, nodeClick );
+				if( nodesEditable )
+				{
+					$(".treeNodeAdd").bind("click", orgPageAddNode);
+					$(".treeNodeMod").bind("click", orgPageModNode);
+					$(".treeNodeDel").bind("click", orgPageDelNode);
+				}	
 			}
 			
 		}
